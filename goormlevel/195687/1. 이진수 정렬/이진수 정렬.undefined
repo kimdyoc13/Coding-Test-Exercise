@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N, K = map(int, input().split(' '))
+
+second_list = list(map(int, input().split(' ')))
+
+def bin_change(x):
+	bin = str(format(x, 'b')).count('1')
+	return bin
+
+
+print(sorted(second_list, reverse = True, key = lambda x: (bin_change(x), x))[K-1])
