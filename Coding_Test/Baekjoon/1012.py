@@ -1,4 +1,29 @@
 import sys
+# 방향 벡터
+dy = [-1, 1, 0, 0]
+dx = [0, 0, -1, 1]
+
+# 변수 정의
+answer = 0
+
+# dfs 함수 정의
+def dfs(M, N):
+    
+    for i in range(N):
+        for j in range(M):
+            if vegetable_list[i][j]== 1:
+                need_visited = [[i, j]]
+
+                while need_visited:
+                    cy, cx = need_visited.pop()
+                    if vegetable_list[cy][cx] ==1:
+                        vegetable_list[cy][cx] = 0 # 방문 처리
+                        for d in range(4):
+                            ny, nx = cy + dy[d], cx + dx[d]
+                            if 0 <= ny <N and 0 <=nx < M and vegetable_list[ny][nx] ==1:
+                                need_visited.append([ny, nx])
+                global answer
+                answer += 1 
 T = int(sys.stdin.readline())
 
 for i in range(T):
@@ -13,30 +38,11 @@ for i in range(T):
         x, y = map(int, sys.stdin.readline().split())
         vegetable_list[y][x] = 1
     
-    print(vegetable_list)
+    #------------------------------------------------------------------------
+    dfs(M, N)
 
 
-    def dfs(graph, start_node):
- 
-        ## 기본은 항상 두개의 리스트를 별도로 관리해주는 것
-        need_visited, visited = list(), list()
-    
-        ## 시작 노드를 시정하기 
-        need_visited.append(start_node)
-        
-        ## 만약 아직도 방문이 필요한 노드가 있다면,
-        while need_visited:
-    
-            ## 그 중에서 가장 마지막 데이터를 추출 (스택 구조의 활용)
-            node = need_visited.pop()
-            
-            ## 만약 그 노드가 방문한 목록에 없다면
-            if node not in visited:
-    
-                ## 방문한 목록에 추가하기 
-                visited.append(node)
-    
-                ## 그 노드에 연결된 노드를 
-                need_visited.extend(graph[node])
-                
-        return visited
+    #------------------------------------------------------------------------------
+
+    print(answer)
+    answer = 0
