@@ -1,14 +1,9 @@
-while 1:
-  a, b, c = map(int, input().split())
-  if a == 0 and b == 0 and c == 0:
-    break;
-  
-  if max(a, b, c) == a:
-    a, c = c, a
-  elif max(a, b, c) == b:
-    b, c = c, b
-  
-  if a*a + b*b == c*c:
-    print("right")
-  else:
-    print("wrong")
+while True: # ~~ 가 나올때까지
+    num_list = list(map(int, input().split()))
+    num_list.sort()
+    if num_list[0] ==0:
+        break
+    elif num_list[0]**2 + num_list[1]**2 == num_list[2]**2:
+        print("right")
+    elif num_list[0]**2 + num_list[1]**2 != num_list[2]**2:
+        print("wrong")
