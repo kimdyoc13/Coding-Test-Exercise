@@ -1,8 +1,13 @@
-A=int(input())
-user = []
-for _ in range(A):
-    age, name = input().split()
-    user.append([int(age),name])
+N = int(input())
 
-for i in sorted(user,key=lambda x : x[0]):
-    print(i[0],i[1])
+info = []
+for i in range(N):
+    A, B = map(str, input().split())
+    A = int(A)
+    info.append((A, B))
+# key 기준 오름차순
+sorted_info = sorted(info, key = lambda item: item[0])
+
+for key, value in sorted_info:
+    print(key, value)
+    
